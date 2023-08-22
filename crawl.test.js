@@ -1,27 +1,25 @@
-const {normalizeURL, getURLsFromHTML} = require('./crawl.js')
+const { normalizeURL, getURLsFromHTML } = require("./crawl.js");
 
+test("normalizeURL strips http protocol", () => {
+  const input = "http://google.com/path";
+  const normalized = normalizeURL(input);
+  expect(normalized).toEqual("google.com/path");
+});
 
+test("normalizeURL strips https protocol", () => {
+  const input = "https://google.com/path";
+  const normalized = normalizeURL(input);
+  expect(normalized).toEqual("google.com/path");
+});
 
-test('normalizeURL strips http protocol', () => {
-    const input = 'http://google.com/path'
-    const normalized = normalizeURL(input)
-    expect(normalized).toEqual('google.com/path');
-})
+test("normalizeURL strips trailing slashes", () => {
+  const input = "https://google.com/path/";
+  const normalized = normalizeURL(input);
+  expect(normalized).toEqual("google.com/path");
+});
 
-test('normalizeURL strips https protocol', () => {
-    const input = 'https://google.com/path'
-    const normalized = normalizeURL(input)
-    expect(normalized).toEqual('google.com/path');
-})
-
-test('normalizeURL strips trailing slashes', () => {
-    const input = 'https://google.com/path/'
-    const normalized = normalizeURL(input)
-    expect(normalized).toEqual('google.com/path')
-})
-
-test('getURLsFromHTML returns a url', () => {
-    const html = `
+test("getURLsFromHTML returns a url", () => {
+  const html = `
         <html>
             <body>
                 <div>
@@ -29,13 +27,13 @@ test('getURLsFromHTML returns a url', () => {
                 </div>
             </body>
         </html>
-    `
-    const urls = getURLsFromHTML(html, 'https://google.com')
-    expect(urls).toEqual(['https://google.com/'])
-})
+    `;
+  const urls = getURLsFromHTML(html, "https://google.com");
+  expect(urls).toEqual(["https://google.com/"]);
+});
 
-test('getURLsFromHTML detects relative urls', () => {
-    const html = `
+test("getURLsFromHTML detects relative urls", () => {
+  const html = `
         <html>
             <body>
                 <div>
@@ -43,13 +41,13 @@ test('getURLsFromHTML detects relative urls', () => {
                 </div>
             </body>
         </html>
-    `
-    const urls = getURLsFromHTML(html, 'https://google.com')
-    expect(urls).toEqual(['https://google.com/party'])
-})
+    `;
+  const urls = getURLsFromHTML(html, "https://google.com");
+  expect(urls).toEqual(["https://google.com/party"]);
+});
 
-test('getURLsFromHTML handles invalid url', () => {
-    const html = `
+test("getURLsFromHTML handles invalid url", () => {
+  const html = `
         <html>
             <body>
                 <div>
@@ -57,7 +55,7 @@ test('getURLsFromHTML handles invalid url', () => {
                 </div>
             </body>
         </html>
-    `
-    const urls = getURLsFromHTML(html, 'https://google.com')
-    expect(urls).toEqual([])
-})
+    `;
+  const urls = getURLsFromHTML(html, "https://google.com");
+  expect(urls).toEqual([]);
+});
