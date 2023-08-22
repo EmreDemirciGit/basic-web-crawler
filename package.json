@@ -1,0 +1,26 @@
+{
+  "name": "basic-web-crawler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./main.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EmreDemirciGit/basic-web-crawler.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EmreDemirciGit/basic-web-crawler/issues"
+  },
+  "homepage": "https://github.com/EmreDemirciGit/basic-web-crawler#readme",
+  "devDependencies": {
+    "jest": "^29.6.3"
+  },
+  "dependencies": {
+    "jsdom": "^22.1.0"
+  }
+}
